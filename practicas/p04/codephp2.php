@@ -29,4 +29,3 @@
         </p>
         <?= "<div><big> Buenos días de $variable2 </big></div>" ?> 
     </body>
-</html>
