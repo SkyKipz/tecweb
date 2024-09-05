@@ -20,19 +20,9 @@
             //$house*5 no es válida porque contiene un carácter no permitido, el *
             $no_Validas = 'Las variables "myvar" y "$house*5" no son válidas<br>';
 
-            echo $_myvar;
-            echo $_7var;
-            echo $myvar;
-            echo $var7;
-            echo $_element1;
-            echo $no_Validas;
+            echo $_myvar.$_7var.$myvar.$var7.$_element1.$no_Validas;
+            unset ($_myvar,$_7var,$myvar,$var7,$_element1,$no_Validas);
 
-            unset ($_myvar);
-            unset ($_7var);
-            unset ($myvar);
-            unset ($var7);
-            unset ($_element1);
-            unset ($no_Validas);
         ?>
     </body>
 </html>
