@@ -76,9 +76,9 @@
 
     <h2>Ejercicio 4</h2>
         <?php
-            echo "Variable \$a usando \$GLOBALS: " . $GLOBALS['a'] . "<br />";
-            echo "Variable \$b usando \$GLOBALS: " . $GLOBALS['b'] . "<br />";
-            echo "Variable \$c usando \$GLOBALS: " . $GLOBALS['c'] . "<br />";
+            echo "Variable \$a usando \$GLOBALS: " . $GLOBALS['a'] . "<br>";
+            echo "Variable \$b usando \$GLOBALS: " . $GLOBALS['b'] . "<br>";
+            echo "Variable \$c usando \$GLOBALS: " . $GLOBALS['c'] . "<br>";
             echo "Variable \$z usando \$GLOBALS: ";
             print_r($GLOBALS['z']);
 
@@ -126,6 +126,13 @@
             echo "Se puede mostrar usando un (int) seguido de la variable, por ejemplo (int)\$c<br>c: " . (int)$c . ", e: " . (int)$e;
 
             unset($a, $b, $c, $d, $e, $f);
+        ?>
+    <h2>Ejercicio 7</h2>
+        <?php
+            echo "Versión de Apache y PHP: " . $_SERVER['SERVER_SOFTWARE'] . "<br >";
+            echo "Sistema operativo del servidor: " . PHP_OS . "<br>";
+            echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
+            unset($_SERVER);
         ?>
         
     </body>
