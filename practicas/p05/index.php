@@ -101,5 +101,32 @@
             unset($a, $b, $c);
         ?>
 
+    <h2>Ejercicio 6</h2>
+        <?php
+            $a = "0";
+            $b = "TRUE";
+            $c = FALSE; // No se puede imprimir con un echo
+            $d = ($a OR $b);
+            $e = ($a AND $c); // No se puede imprimir con un echo
+            $f = ($a XOR $b);
+            echo "a: $a<br>";
+            var_dump($a);
+            echo "<br>b: $b<br>";
+            var_dump($b);
+            echo "<br>c: $c<br>";
+            var_dump($c);
+            echo "<br>d: $d<br>";
+            var_dump($d);
+            echo "<br>e: $e<br>";
+            var_dump($e);
+            echo "<br>f: $f<br>";
+            var_dump($f);
+            echo '<br>';
+
+            echo "Se puede mostrar usando un (int) seguido de la variable, por ejemplo (int)\$c<br>c: " . (int)$c . ", e: " . (int)$e;
+
+            unset($a, $b, $c, $d, $e, $f);
+        ?>
+        
     </body>
 </html>
