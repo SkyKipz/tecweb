@@ -86,5 +86,20 @@
             
         ?>
     
+    <h2>Ejercicio 5</h2>
+        <?php
+            $a = "7 personas";
+            $b = (integer) $a;
+            $a = "9E3";
+            $c = (double) $a;
+            echo "a: $a<br>";
+            var_dump($a);
+            echo "<br>b: $b<br>";
+            var_dump($b);
+            echo "<br>c: $c<br>";
+            var_dump($c);
+            unset($a, $b, $c);
+        ?>
+
     </body>
 </html>
