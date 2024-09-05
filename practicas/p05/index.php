@@ -42,5 +42,38 @@
 
         ?>
 
+    <h2>Ejercicio 3</h2>
+        <?php
+            $a = "PHP5";
+            echo "a: $a<br>";
+            var_dump($a);
+
+            $z[] = &$a;
+            echo "<br>z: $z<br>";
+            print_r($z);
+
+            $b = "5a version de PHP";
+            echo "<br>b: $b<br>";
+            var_dump($b);
+
+            $c = $b * 10;
+            echo "<br>c: $c<br>";
+            var_dump($c);
+
+            $a .= $b;
+            echo "<br>a: $a<br>";
+            var_dump($a);//Es una cadena más larga, agregando lo que tiene b
+
+            $b *= $c;
+            echo "<br>b: $b<br>";
+            var_dump($b); //Pasó a ser un int
+
+            $z[0] = "MySQL";
+            echo "<br>z: $z<br>";
+            print_r($z);
+
+            unset($a, $b, $c, $z);
+        ?>
+
     </body>
 </html>
