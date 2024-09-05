@@ -72,8 +72,19 @@
             echo "<br>z: $z<br>";
             print_r($z);
 
-            unset($a, $b, $c, $z);
         ?>
 
+    <h2>Ejercicio 4</h2>
+        <?php
+            echo "Variable \$a usando \$GLOBALS: " . $GLOBALS['a'] . "<br />";
+            echo "Variable \$b usando \$GLOBALS: " . $GLOBALS['b'] . "<br />";
+            echo "Variable \$c usando \$GLOBALS: " . $GLOBALS['c'] . "<br />";
+            echo "Variable \$z usando \$GLOBALS: ";
+            print_r($GLOBALS['z']);
+
+            unset($GLOBALS['a'], $GLOBALS['b'], $GLOBALS['c'], $GLOBALS['z']); //Nota importante, si las usas con la matriz $GLOBALS y después liberamos estas mismas, la variable solita como $a también se libera
+            
+        ?>
+    
     </body>
 </html>
