@@ -36,5 +36,37 @@
         }
         echo "$cantidadNumeros números en $iteraciones iteraciones.";
     }
+
+    function encontrarMultiploWhile($numero) {
+        $encontrado = false;
+        $contador = 0;
+        
+        while (!$encontrado) {
+            $aleatorio = rand(1, 1000);
+            $contador++;
+            if ($aleatorio % $numero == 0) {
+                $encontrado = true;
+
+                echo 'While:<br>';
+                echo "Número aleatorio múltiplo de $numero encontrado: $aleatorio<br>";
+                echo "Total de interaciones: $contador<br><br>";
+            }
+        }
+    }
+
+    function encontrarMultiploDoWhile($numero) {
+        $contador = 0;
+        
+        do {
+            $aleatorio = rand(1, 1000);
+            $contador++;
+        } while ($aleatorio % $numero != 0);
+        
+        echo 'Do while:<br>';
+        echo "Número aleatorio múltiplo de $numero encontrado: $aleatorio<br>";
+        echo "Total de iteraciones: $contador<br><br>";
+    }
+    
+    
     
 ?>
