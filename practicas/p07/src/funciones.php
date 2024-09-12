@@ -30,7 +30,7 @@
             $secuencia[] = $fila;
         }
 
-        echo "<h2>Secuencia obtenida:</h2>";
+        echo "<h3>Secuencia obtenida:</h3>";
         foreach ($secuencia as $fila) {
             echo implode(", ", $fila) . "<br>";
         }
