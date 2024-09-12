@@ -21,6 +21,12 @@
             }
         }
     ?>
-    
+
+    <h2>Ejercicio 2</h2>
+    <p>Generación repetitiva de 3 números aleatorios hasta obtener una secuencia compuesta por:<br>impar, par, impar</p>
+    <?php
+        generarSecuencia();
+    ?>
+
 </body>
 </html>
