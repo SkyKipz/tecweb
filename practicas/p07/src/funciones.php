@@ -67,6 +67,21 @@
         echo "Total de iteraciones: $contador<br><br>";
     }
     
+    function ASCII() {
+        $arreglo = [];
+        
+        for ($i = 97; $i <= 122; $i++) {
+            $arreglo[$i] = chr($i); 
+        }
+        
+        echo "<table border='1'>";
+        echo "<tr><th>Índice</th><th>Valor</th></tr>";
+        foreach ($arreglo as $llave => $valor) {
+            echo "<tr><td>$llave</td><td>$valor</td></tr>";
+        }
+        echo "</table>";
+    }
+    
     
     
 ?>
