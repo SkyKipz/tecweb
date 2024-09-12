@@ -28,5 +28,16 @@
         generarSecuencia();
     ?>
 
+    <h2>Ejercicio 3</h2>
+    <p>Encontrar el primer número entero obtenido aleatoriamente, pero que además sea múltiplo de un número dado.</p>
+    <?php 
+        if (isset($_GET['numero'])) {
+            $numero = $_GET['numero'];
+            encontrarMultiploWhile($numero);
+            encontrarMultiploDoWhile($numero); 
+        }
+        
+    ?>
+    
 </body>
 </html>
