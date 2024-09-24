@@ -2,10 +2,10 @@
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
 	<?php
-	if(isset($_GET['tope']))
-		$tope = $_GET['tope'];
+	if(isset($_GET['eliminados']))
+		$eliminados = $_GET['eliminados'];
 
-	if (!empty($tope))
+	if (isset($eliminados) && $eliminados == 0)
 	{
 		/** SE CREA EL OBJETO DE CONEXION */
 		@$link = new mysqli('localhost', 'root', '12345678a', 'marketzone');	
@@ -14,11 +14,10 @@
 		if ($link->connect_errno) 
 		{
 			die('Falló la conexión: '.$link->connect_error.'<br/>');
-                /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
 		}
 
-		/** Realizar la consulta para obtener productos */
-		if ( $result = $link->query("SELECT * FROM productos WHERE unidades <= $tope") ) 
+		/** Realizar la consulta para obtener productos no eliminados */
+		if ( $result = $link->query("SELECT * FROM productos WHERE eliminado = 0") ) 
 		{
 			$rows = $result->fetch_all(MYSQLI_ASSOC);
 			$result->free();
@@ -29,11 +28,11 @@
 	?>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Productos</title>
+		<title>Productos Vigentes</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
 	<body>
-		<h3>PRODUCTOS</h3>
+		<h3>PRODUCTOS VIGENTES</h3>
 		<br/>
 
 		<?php if( isset($rows) && count($rows) > 0 ) : ?>
@@ -61,19 +60,16 @@
 						<td><?= $row['precio'] ?></td>
 						<td><?= $row['unidades'] ?></td>
 						<td><?= utf8_encode($row['detalles']) ?></td>
-						<td><img src=<?= $row['imagen'] ?> ></td>
+						<td><img src=<?= $row['imagen'] ?> width="100"></td>
 					</tr>
 					<?php endforeach; ?>
 				</tbody>
 			</table>
 
-		<?php elseif(!empty($tope)) : ?>
-
+		<?php else : ?>
 			<script>
-				alert('No se encontraron productos con unidades menores o iguales a ' + <?= htmlentities($tope) ?>);
+				alert('No se encontraron productos vigentes.');
 			</script>
-            
 		<?php endif; ?>
 	</body>
 </html>
-
