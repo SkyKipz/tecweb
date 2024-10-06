@@ -1,41 +1,106 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="utf-8" >
-    <title>Formulario Base de Datos</title>
-    <style type="text/css">
-      ol, ul { 
-      list-style-type: none;
-      }
-    </style>
-  </head>
+    <head>
+        <meta charset="utf-8">
+        <title>Formulario Base de Datos</title>
+        <style type="text/css">
+            ol, ul {
+            list-style-type: none;
+            }
+        </style>
+        <script>
+            function validarFormulario() {
+            // Validar nombre
+            var nombre = document.getElementById("nombre").value;
+            if (nombre === "" || nombre.length > 100) {
+                alert("El nombre es requerido y debe tener 100 caracteres o menos.");
+                return false;
+            }
 
-  <body>
-    <h1>Registrar Nuevo Producto</h1>
-    <form action="http://localhost/tecweb/practicas/p09/set_producto_v2.php" method="post">
-        <label for="nombre">Nombre del Producto (hasta 100 caracteres):</label>
-        <input type="text" id="nombre" name="nombre" maxlength="100" required><br>
+            // Validar marca
+            var marca = document.getElementById("marca").value;
+            if (marca === "") {
+                alert("Debe seleccionar una marca.");
+                return false;
+            }
 
-        <label for="marca">Marca (hasta 25 caracteres):</label>
-        <input type="text" id="marca" name="marca" maxlength="25" required><br>
+            // Validar modelo
+            var modelo = document.getElementById("modelo").value;
+            var modeloRegex = /^[a-zA-Z0-9]*$/; // Solo texto alfanumérico
+            if (modelo === "" || modelo.length > 25 || !modeloRegex.test(modelo)) {
+                alert("El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.");
+                return false;
+            }
 
-        <label for="modelo">Modelo (hasta 25 caracteres):</label>
-        <input type="text" id="modelo" name="modelo" maxlength="25" required><br>
+            // Validar precio
+            var precio = parseFloat(document.getElementById("precio").value);
+            if (isNaN(precio) || precio <= 99.99) {
+                alert("El precio es requerido y debe ser mayor a 99.99.");
+                return false;
+            }
 
-        <label for="precio">Precio (formato: 9999999.99):</label>
-        <input type="number" step="0.01" id="precio" name="precio" required><br>
+            // Validar detalles
+            var detalles = document.getElementById("detalles").value;
+            if (detalles.length > 250) {
+                alert("Los detalles deben tener 250 caracteres o menos.");
+                return false;
+            }
 
-        <label for="detalles">Detalles (hasta 250 caracteres):</label>
-        <textarea id="detalles" name="detalles" maxlength="250"></textarea><br>
+            // Validar unidades
+            var unidades = parseInt(document.getElementById("unidades").value);
+            if (isNaN(unidades) || unidades <= 0) {
+            alert("Las unidades son requeridas y deben ser mayores a 0.");
+            return false;
+            }
 
-        <label for="unidades">Unidades:</label>
-        <input type="number" id="unidades" name="unidades" required><br>
 
-        <label for="imagen">Ruta de la Imagen (hasta 100 caracteres):</label>
-        <input type="text" id="imagen" name="imagen" maxlength="100" required><br>
+            // Validar imagen o usar ruta por defecto
+            var imagen = document.getElementById("imagen").value;
+            if (imagen === "") {
+                document.getElementById("imagen").value = "img/img_placeholder.jpg";
+            }
 
-        <input type="submit" value="Registrar Producto">
-    </form>
-</body>
+            // Si todas son correctas, el formulario se puede enviar
+            return true;
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>Registrar Nuevo Producto</h1>
+        <form action="http://localhost/tecweb/practicas/p09/set_producto_v2.php" method="post" onsubmit="return validarFormulario()">
+            <label for="nombre">Nombre del Producto (hasta 100 caracteres):</label>
+            <input type="text" id="nombre" name="nombre" maxlength="100" required><br \><br \>
+
+            <label for="marca">Marca (seleccione una opción):</label>
+            <select id="marca" name="marca" required>
+                <option value="">Seleccione una marca</option>
+                <option value="Logitech G">Logitech G</option>
+                <option value="Nintendo">Nintendo</option>
+                <option value="Apple">Apple</option>
+                <option value="Adata">Adata</option>
+                <option value="Razer">Razer</option>
+                <option value="ASUS">ASUS</option>
+                <option value="MSI">MSI</option>
+            </select><br \><br \>
+
+            <label for="modelo">Modelo (alfanumérico, hasta 25 caracteres):</label>
+            <input type="text" id="modelo" name="modelo" maxlength="25" required><br \><br \>
+
+            <label for="precio">Precio (formato: 9999999.99, mayor a 99.99):</label>
+            <input type="number" step="0.01" id="precio" name="precio" required><br \><br \>
+
+            <label for="detalles">Detalles (hasta 250 caracteres, opcional):</label>
+            <textarea id="detalles" name="detalles" maxlength="250"></textarea><br \><br \>
+
+            <label for="unidades">Unidades (mayor o igual a 0):</label>
+            <input type="number" id="unidades" name="unidades" required><br \><br \>
+
+            <label for="imagen">Ruta de la Imagen (hasta 100 caracteres, opcional):</label>
+            <input type="text" id="imagen" name="imagen" maxlength="100"><br \><br \>
+
+            <input type="submit" value="Registrar Producto">
+        </form>
+    </body>
 </html>
