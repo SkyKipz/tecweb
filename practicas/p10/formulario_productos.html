@@ -27,9 +27,9 @@
 
             // Validar modelo
             var modelo = document.getElementById("modelo").value;
-            var modeloRegex = /^[a-zA-Z0-9]*$/; // Solo texto alfanumérico
+            var modeloRegex = /^[a-zA-Z0-9\s]*$/;
             if (modelo === "" || modelo.length > 25 || !modeloRegex.test(modelo)) {
-                alert("El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.");
+                alert("El modelo es requerido, debe ser alfanumérico (incluyendo espacios) y tener 25 caracteres o menos.");
                 return false;
             }
 
