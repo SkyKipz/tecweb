@@ -50,7 +50,7 @@
 
             // Validar unidades
             var unidades = parseInt(document.getElementById("unidades").value);
-            if (isNaN(unidades) || unidades < 0) {
+            if (isNaN(unidades) || unidades < 1) {
                 alert("Las unidades son requeridas y deben ser mayores o iguales a 0.");
                 return false;
             }
