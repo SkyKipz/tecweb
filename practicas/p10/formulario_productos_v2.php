@@ -92,7 +92,7 @@
     $link->close();
     ?>
 
-    <form action="http://localhost/tecweb/practicas/p10/set_producto_v2.php" method="post" onsubmit="return validarFormulario()">
+    <form action="http://localhost/tecweb/practicas/p10/update_producto.php" method="post" onsubmit="return validarFormulario()">
         <input type="hidden" name="id" value="<?= isset($producto['id']) ? $producto['id'] : '' ?>">
 
         <label for="nombre">Nombre del Producto (hasta 100 caracteres):</label>
