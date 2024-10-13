@@ -73,10 +73,51 @@ function agregarProducto(e) {
     var productoJsonString = document.getElementById('description').value;
     // SE CONVIERTE EL JSON DE STRING A OBJETO
     var finalJSON = JSON.parse(productoJsonString);
-    // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-    finalJSON['nombre'] = document.getElementById('name').value;
+    // VALIDACIONES
+    var nombre = document.getElementById('name').value.trim();
+
+    if (!nombre || nombre.length > 100) {
+        alert("El nombre es requerido y debe tener 100 caracteres o menos.");
+        return;
+    }
+    
+    finalJSON['nombre'] = nombre;
+
+    var marca = finalJSON.marca.trim();
+    if (!marca) {
+        alert("La marca es requerida.");
+        return;
+    }
+
+    var modelo = finalJSON.modelo.trim();
+    if (!modelo || modelo.length > 25) {
+        alert("El modelo es requerido y debe tener 25 caracteres o menos.");
+        return;
+    }
+
+    var precio = finalJSON.precio;
+    if (!precio || precio <= 99.99) {
+        alert("El precio es requerido y debe ser mayor a 99.99.");
+        return;
+    }
+
+    var detalles = finalJSON.detalles ? finalJSON.detalles.trim() : "";
+    if (detalles.length > 250) {
+        alert("Los detalles deben tener 250 caracteres o menos.");
+        return;
+    }
+    
+    var unidades = finalJSON.unidades;
+    if (unidades === undefined || unidades < 0) {
+        alert("Las unidades son requeridas y deben ser 0 o más.");
+        return;
+    }
+
+    var imagen = finalJSON.imagen ? finalJSON.imagen.trim() : "img/placeholder.jpg";
+    finalJSON['imagen'] = imagen;
+
     // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON,null,2);
+    productoJsonString = JSON.stringify(finalJSON, null, 2);
 
     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
     var client = getXMLHttpRequest();
@@ -85,11 +126,12 @@ function agregarProducto(e) {
     client.onreadystatechange = function () {
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
+            alert(client.responseText); 
         }
     };
     client.send(productoJsonString);
 }
+
 
 // SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR
 function getXMLHttpRequest() {
