@@ -108,7 +108,7 @@ function agregarProducto(e) {
     }
     
     var unidades = finalJSON.unidades;
-    if (unidades === undefined || unidades < 0) {
+    if (unidades === undefined || unidades < 1) {
         alert("Las unidades son requeridas y deben ser 0 o más.");
         return;
     }
