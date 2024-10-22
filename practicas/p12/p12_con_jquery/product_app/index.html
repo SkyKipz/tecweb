@@ -10,19 +10,24 @@
 
     <!-- BARRA DE NAVEGACIÓN  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href=".">ProductApp</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto"></ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="ID, marca o descripción" aria-label="Search">
-            <button class="btn btn-success my-2 my-sm-0" type="submit" onclick="buscarProducto(event)">Buscar</button>
-          </form>
-      </div>
-    </nav>
+		<a class="navbar-brand" href=".">ProductApp</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto"></ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="ID, marca o descripción" aria-label="Search">
+				<button class="btn btn-success my-2 my-sm-0" type="button">Buscar</button>
+			</form>
+		</div>
+	</nav>
+	
+	<div id="product-result" class="d-none">
+		<ul id="container"></ul> 
+	</div>
+	
 
     <div class="container">
       <div class="row p-4">
@@ -30,15 +35,15 @@
           <div class="card">
             <div class="card-body">
               <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
-              <form id="product-form">
+              <form id="product-form"> <!-- AQUI SE CAMBIO TASK POR PRODUCT-->
                 <div class="form-group">
                   <input class="form-control" type="text" id="name" placeholder="Nombre de producto">
                 </div>
                 <div class="form-group">
                   <textarea class="form-control" id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>
                 </div>
-                <input type="hidden" id="productId">
-                <button class="btn btn-primary btn-block text-center" type="submit" onclick="agregarProducto(event)">
+                <input type="hidden" id="productId"> <!-- AQUI SE CAMBIO TASK POR PRODUCT-->
+                <button class="btn btn-primary btn-block text-center" type="submit" > <!--onclick="agregarProducto(event)"-->
                   Agregar Producto
                 </button>
               </form>
@@ -48,7 +53,7 @@
 
         <!-- TABLA  -->
         <div class="col-md-7">
-          <div class="card my-4 d-none" id="product-result">
+          <div class="card my-4 d-none" id="product-result"> <!-- AQUI SE CAMBIO TASK POR PRODUCT-->
             <div class="card-body">
               <!-- RESULTADO -->
               <ul id="container"></ul>
@@ -63,15 +68,15 @@
                 <td>Descripción</td>
               </tr>
             </thead>
-            <tbody id="products"></tbody>
+            <tbody id="products"></tbody> <!-- AQUI SE CAMBIO TASK POR PRODUCT-->
           </table>
         </div>
       </div>
     </div>
 
-    <!--script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script-->
+      crossorigin="anonymous"></script>
     <!-- Lógica del Frontend -->
     <script src="app.js"></script>
   </body>
