@@ -15,6 +15,7 @@ function init() {
 }
 
 $(document).ready(function() {
+    init();
     // se mueve del init para acá
     listarProductos();
 
@@ -56,8 +57,14 @@ $(document).ready(function() {
     }
 
     // agregar
-    $('#add-product-form').on('submit', function(e) {
+    $('#product-form').on('submit', function(e) {
         e.preventDefault();
+
+        var productoJsonString = $('#description').val();
+        
+        var finalJSON = JSON.parse(productoJsonString);
+        
+        let errores = [];
 
         if (!$('#name').val() || $('#name').val().length > 100) {
             errores.push('El nombre es requerido y debe tener 100 caracteres o menos.');
@@ -65,41 +72,33 @@ $(document).ready(function() {
             finalJSON['nombre'] = $('#name').val();
         }
 
-        if (!$('#brand').val()) {
+        if (!finalJSON['marca']) {
             errores.push('La marca es requerida.');
-        } else {
-            finalJSON['marca'] = $('#brand').val();
         }
 
-        const modelo = $('#model').val();
+        const modelo = finalJSON['modelo'] || '';
         if (!modelo || modelo.length > 25 || !/^[a-zA-Z0-9]+$/.test(modelo)) {
             errores.push('El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.');
         } else {
             finalJSON['modelo'] = modelo;
         }
 
-        const precio = parseFloat($('#price').val());
+        const precio = parseFloat(finalJSON['precio']);
         if (!precio || precio <= 99.99) {
             errores.push('El precio es requerido y debe ser mayor a 99.99.');
-        } else {
-            finalJSON['precio'] = precio;
         }
 
-        const detalles = $('#details').val();
+        const detalles = finalJSON['detalles'] || '';
         if (detalles && detalles.length > 250) {
             errores.push('Si se proporcionan detalles, deben tener 250 caracteres o menos.');
-        } else {
-            finalJSON['detalles'] = detalles || '';
         }
 
-        const unidades = parseInt($('#units').val());
+        const unidades = parseInt(finalJSON['unidades']);
         if (!unidades || unidades < 1) {
             errores.push('Las unidades son requeridas y deben ser mayores a 0.');
-        } else {
-            finalJSON['unidades'] = unidades;
         }
 
-        const imagen = $('#image-path').val();
+        const imagen = finalJSON['imagen'];
         finalJSON['imagen'] = imagen || 'img/placeholder.jpg';
 
         if (errores.length > 0) {
@@ -109,32 +108,34 @@ $(document).ready(function() {
             return; // para que no se envien las cosas
         }
 
-        let productoJsonString = $('#description').val();
-        let finalJSON = JSON.parse(productoJsonString);
-        finalJSON['nombre'] = $('#name').val();
         productoJsonString = JSON.stringify(finalJSON, null, 2);
 
         $.ajax({
             url: './backend/product-add.php',
             type: 'POST',
-            contentType: "application/json; charset=utf-8",
+            contentType: "application/json;charset=UTF-8",
             data: productoJsonString,
             success: function(response) {
                 let respuesta = JSON.parse(response);
-
                 let template_bar = `
-                    <li style="list-style: none;">status: ${respuesta.status}</li>
-                    <li style="list-style: none;">message: ${respuesta.message}</li>
+                    <li style="list-style: none;">${respuesta.status}</li>
+                    <li style="list-style: none;">${respuesta.message}</li>
                 `;
 
-                $('#product-result').removeClass('d-none');
+                $('#product-result').removeClass('d-none'); 
                 $('#container').html(template_bar);
 
                 listarProductos();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error en la petición: ", error);
             }
         });
     });
 
+
+
+    // borrar
     $(document).on('click', '.product-delete', function() {
         if (confirm("De verdad deseas eliminar el Producto")) {
             let id = $(this).closest('tr').attr('productId');
@@ -219,4 +220,5 @@ $(document).ready(function() {
             $('#product-result').addClass('d-none');
         }
     });
+
 });
