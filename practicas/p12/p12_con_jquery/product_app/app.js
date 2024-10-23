@@ -65,59 +65,82 @@ $(document).ready(function() {
     // agregar
     $('#product-form').on('submit', function(e) {
         e.preventDefault();
-
+    
+        // Convertir la descripción ingresada en JSON
         var productoJsonString = $('#description').val();
-        
         var finalJSON = JSON.parse(productoJsonString);
         
         let errores = [];
-
+    
+        // Validar el campo de nombre
         if (!$('#name').val() || $('#name').val().length > 100) {
             errores.push('El nombre es requerido y debe tener 100 caracteres o menos.');
         } else {
             finalJSON['nombre'] = $('#name').val();
         }
-
+    
+        // Validar la marca
         if (!finalJSON['marca']) {
             errores.push('La marca es requerida.');
         }
-
+    
+        // Validar el modelo
         const modelo = finalJSON['modelo'] || '';
-        if (!modelo || modelo.length > 25 || !/^[a-zA-Z0-9]+$/.test(modelo)) {
+        if (!modelo || modelo.length > 25 || !/^[a-zA-Z0-9\s]+$/.test(modelo)) {
             errores.push('El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.');
         } else {
             finalJSON['modelo'] = modelo;
         }
-
+    
+        // Validar el precio
         const precio = parseFloat(finalJSON['precio']);
         if (!precio || precio <= 99.99) {
             errores.push('El precio es requerido y debe ser mayor a 99.99.');
         }
-
+    
+        // Validar detalles
         const detalles = finalJSON['detalles'] || '';
         if (detalles && detalles.length > 250) {
             errores.push('Si se proporcionan detalles, deben tener 250 caracteres o menos.');
         }
-
+    
+        // Validar unidades
         const unidades = parseInt(finalJSON['unidades']);
         if (!unidades || unidades < 1) {
             errores.push('Las unidades son requeridas y deben ser mayores a 0.');
         }
-
+    
+        // Validar la imagen
         const imagen = finalJSON['imagen'];
         finalJSON['imagen'] = imagen || 'img/placeholder.jpg';
-
+    
+        // Si hay errores, mostrarlos y detener el envío
         if (errores.length > 0) {
             let mensajeErrores = errores.join('<br>');
             $('#container').html(`<li style="color: red;">${mensajeErrores}</li>`);
-            $('#product-result').removeClass('d-none'); 
-            return; // para que no se envien las cosas
+            $('#product-result').removeClass('d-none');
+            return; // Detener la ejecución si hay errores
         }
-
+    
+        // Si estamos editando un producto, añadir el ID al JSON
+        if (edit === true) {
+            const productID = $('#productId').val();
+            if (!productID) {
+                errores.push('El ID del producto es requerido para la edición.');
+                $('#container').html(`<li style="color: red;">${errores.join('<br>')}</li>`);
+                $('#product-result').removeClass('d-none');
+                return;
+            }
+            finalJSON['id'] = productID;  // Añadir el ID al JSON
+        }
+    
+        // Convertir el JSON a cadena de nuevo para el envío
         productoJsonString = JSON.stringify(finalJSON, null, 2);
-
+    
+        // Definir la URL según si estamos agregando o editando
         let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
-
+    
+        // Enviar el AJAX
         $.ajax({
             url: url,
             type: 'POST',
@@ -129,10 +152,10 @@ $(document).ready(function() {
                     <li style="list-style: none;">${respuesta.status}</li>
                     <li style="list-style: none;">${respuesta.message}</li>
                 `;
-
+    
                 $('#product-result').removeClass('d-none'); 
                 $('#container').html(template_bar);
-
+    
                 listarProductos();
             },
             error: function(xhr, status, error) {
@@ -140,6 +163,9 @@ $(document).ready(function() {
             }
         });
     });
+    
+    
+    
 
     // borrar
     $(document).on('click', '.product-delete', function() {
@@ -235,7 +261,7 @@ $(document).ready(function() {
 
             const product = JSON.parse(response);
 
-            $('#product-id').val(product.id);
+            $('#productId').val(product.id);
             delete product.id;
 
             $('#name').val(product.nombre);
