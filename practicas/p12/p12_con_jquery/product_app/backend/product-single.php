@@ -9,13 +9,13 @@
             if ($row = mysqli_fetch_array($result)) {
                 $json = array(
                     'id' => $row['id'],
-                    'nombre' => $row['nombre'],
-                    'marca' => $row['marca'],
+                    'nombre' => $row['nombre'],                    
                     'precio' => $row['precio'],
-                    'detalles' => $row['detalles'],
                     'unidades' => $row['unidades'],
-                    'imagen' => $row['imagen'],
-                    'modelo' => $row['modelo']
+                    'modelo' => $row['modelo'],
+                    'marca' => $row['marca'],
+                    'detalles' => $row['detalles'],             
+                    'imagen' => $row['imagen']
                 );
             } else {
                 $json = null;
