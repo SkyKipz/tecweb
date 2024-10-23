@@ -16,6 +16,10 @@ function init() {
 
 $(document).ready(function() {
     init();
+
+    // var para editar
+    let edit = false;
+
     // se mueve del init para acá
     listarProductos();
 
@@ -40,7 +44,9 @@ $(document).ready(function() {
                         template += `
                             <tr productId="${producto.id}">
                                 <td>${producto.id}</td>
-                                <td>${producto.nombre}</td>
+                                <td>
+                                    <a href="#" class="product-item">${producto.nombre}</a>
+                                </td>
                                 <td><ul>${descripcion}</ul></td>
                                 <td>
                                     <button class="product-delete btn btn-danger">
@@ -110,8 +116,10 @@ $(document).ready(function() {
 
         productoJsonString = JSON.stringify(finalJSON, null, 2);
 
+        let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+
         $.ajax({
-            url: './backend/product-add.php',
+            url: url,
             type: 'POST',
             contentType: "application/json;charset=UTF-8",
             data: productoJsonString,
@@ -132,8 +140,6 @@ $(document).ready(function() {
             }
         });
     });
-
-
 
     // borrar
     $(document).on('click', '.product-delete', function() {
@@ -219,6 +225,27 @@ $(document).ready(function() {
             listarProductos();
             $('#product-result').addClass('d-none');
         }
+    });
+
+    $(document).on('click', '.product-item', function () {  
+        let element = $(this)[0].parentElement.parentElement;
+        let id = $(element).attr('productId');
+
+        $.post('./backend/product-single.php', {id}, function (response) {
+
+            const product = JSON.parse(response);
+
+            $('#product-id').val(product.id);
+            delete product.id;
+
+            $('#name').val(product.nombre);
+            delete product.nombre;
+
+            $('#description').val(JSON.stringify(product,null,2));
+
+            edit = true;
+
+        });
     });
 
 });
