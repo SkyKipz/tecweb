@@ -248,6 +248,7 @@ $(document).ready(function() {
         }
     });
 
+    // eliminar
     $(document).on('click', '.product-item', function () {  
         let element = $(this)[0].parentElement.parentElement;
         let id = $(element).attr('productId');
@@ -269,4 +270,99 @@ $(document).ready(function() {
         });
     });
 
+    // foco
+    $(document).ready(function () {
+        $('#name').on('blur', function () {
+            validarNombre();
+        });
+
+        $('#marca').on('blur', function () {
+            validarMarca();
+        });
+
+        $('#modelo').on('blur', function () {
+            validarModelo();
+        });
+
+        $('#precio').on('blur', function () {
+            validarPrecio();
+        });
+
+        $('#detalles').on('blur', function () {
+            validarDetalles();
+        });
+
+        $('#unidades').on('blur', function () {
+            validarUnidades();
+        });
+        
+        function validarNombre() {
+            const nombre = $('#name').val();
+            if (!nombre || nombre.length > 100) {
+                mostrarError('El nombre es requerido y debe tener 100 caracteres o menos.', '#name');
+                return false;
+            }
+            limpiarError('#name');
+            return true;
+        }
+
+        function validarMarca() {
+            const marca = $('#marca').val();
+            if (!marca) {
+                mostrarError('La marca es requerida.', '#marca');
+                return false;
+            }
+            limpiarError('#marca');
+            return true;
+        }
+
+        function validarModelo() {
+            const modelo = $('#modelo').val();
+            if (!modelo || modelo.length > 25 || !/^[a-zA-Z0-9\s]+$/.test(modelo)) {
+                mostrarError('El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.', '#modelo');
+                return false;
+            }
+            limpiarError('#modelo');
+            return true;
+        }
+
+        function validarPrecio() {
+            const precio = parseFloat($('#precio').val());
+            if (!precio || precio <= 99.99) {
+                mostrarError('El precio es requerido y debe ser mayor a 99.99.', '#precio');
+                return false;
+            }
+            limpiarError('#precio');
+            return true;
+        }
+
+        function validarDetalles() {
+            const detalles = $('#detalles').val();
+            if (detalles && detalles.length > 250) {
+                mostrarError('Los detalles deben tener 250 caracteres o menos.', '#detalles');
+                return false;
+            }
+            limpiarError('#detalles');
+            return true;
+        }
+
+        function validarUnidades() {
+            const unidades = parseInt($('#unidades').val());
+            if (!unidades || unidades < 1) {
+                mostrarError('Las unidades son requeridas y deben ser mayores a 0.', '#unidades');
+                return false;
+            }
+            limpiarError('#unidades');
+            return true;
+        }
+
+        function mostrarError(mensaje, campo) {
+            $(campo).next('.error-message').remove(); 
+            $(campo).after(`<span class="error-message" style="color: red;">${mensaje}</span>`);
+        }
+    
+        function limpiarError(campo) {
+            $(campo).next('.error-message').remove();
+        }
+    });
 });
