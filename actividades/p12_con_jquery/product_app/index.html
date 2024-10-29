@@ -35,18 +35,33 @@
           <div class="card">
             <div class="card-body">
               <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
-              <form id="product-form"> <!-- AQUI SE CAMBIO TASK POR PRODUCT-->
-                <div class="form-group">
-                  <input class="form-control" type="text" id="name" placeholder="Nombre de producto">
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>
-                </div>
-                <input type="hidden" id="productId"> <!-- AQUI SE CAMBIO TASK POR PRODUCT-->
-                <button class="btn btn-primary btn-block text-center" id="add-product-btn"> <!--onclick="agregarProducto(event)"-->
-                  Agregar Producto
-                </button>
-              </form>
+                <form id="product-form"> <!-- AQUI SE CAMBIO TASK POR PRODUCT-->
+                    <div class="form-group">
+                      <input class="form-control" type="text" id="name" placeholder="Nombre de producto" required>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="text" id="marca" placeholder="Marca" required>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="text" id="modelo" placeholder="Modelo" required>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="number" step="0.01" id="precio" placeholder="Precio" required>
+                    </div>
+                    <div class="form-group">
+                      <textarea class="form-control" id="detalles" cols="30" rows="3" placeholder="Detalles"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="number" id="unidades" placeholder="Unidades" required>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="text" id="imagen" placeholder="Ruta de la imagen">
+                    </div>
+                    <input type="hidden" id="productId"> <!-- AQUI SE CAMBIO TASK POR PRODUCT-->
+                    <button class="btn btn-primary btn-block text-center" id="add-product-btn"> <!--onclick="agregarProducto(event)"-->
+                      Agregar Producto
+                    </button>
+                </form>
             </div>
           </div>
         </div>
