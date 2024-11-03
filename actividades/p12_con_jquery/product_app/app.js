@@ -158,10 +158,6 @@ $(document).ready(function() {
         });
     });
 
-    
-    
-    
-
     // borrar
     $(document).on('click', '.product-delete', function() {
         if (confirm("De verdad deseas eliminar el Producto")) {
@@ -248,7 +244,7 @@ $(document).ready(function() {
         }
     });
 
-    // eliminar
+    // editar
     $(document).on('click', '.product-item', function () {  
         let element = $(this)[0].parentElement.parentElement;
         let id = $(element).attr('productId');
@@ -298,13 +294,34 @@ $(document).ready(function() {
         
         function validarNombre() {
             const nombre = $('#name').val();
+            
             if (!nombre || nombre.length > 100) {
                 mostrarError('El nombre es requerido y debe tener 100 caracteres o menos.', '#name');
                 return false;
             }
-            limpiarError('#name');
-            return true;
+        
+            $.ajax({
+                url: './backend/check-product-name.php', 
+                type: 'POST',
+                data: { nombre: nombre }, 
+                success: function(response) {
+                    let respuesta = JSON.parse(response);
+                    if (respuesta.exists) {
+                        mostrarError('El nombre ya está registrado en la base de datos.', '#name');
+                        return false;
+                    } else {
+                        limpiarError('#name');
+                        return true;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error en la petición: ", error);
+                    mostrarError('Ocurrió un error al comprobar el nombre.', '#name');
+                    return false;
+                }
+            });
         }
+        
 
         function validarMarca() {
             const marca = $('#marca').val();
