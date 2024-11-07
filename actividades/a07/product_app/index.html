@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Product Management</a>
+    </nav>
+
+    <div class="container">
+        <div class="row p-4">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Formulario para agregar o editar producto -->
+                        <form id="product-form">
+                            <div class="form-group">
+                                <input type="text" id="name" class="form-control" placeholder="Nombre del producto" required>
+                                <small id="name-status" class="form-text text-muted"></small>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="price" class="form-control" placeholder="Precio" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="units" class="form-control" placeholder="Unidades" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="model" class="form-control" placeholder="Modelo" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="brand" class="form-control" placeholder="Marca" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="details" class="form-control" placeholder="Detalles del producto"></textarea>
+                            </div>
+                            <input type="hidden" id="productId">
+                            <button type="submit" class="btn btn-primary btn-block">Guardar Producto</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div id="product-result" class="card my-4">
+                    <div class="card-body">
+                        <ul id="container"></ul>
+                    </div>
+                </div>
+
+                <input type="text" id="search" class="form-control mb-4" placeholder="Buscar producto...">
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
