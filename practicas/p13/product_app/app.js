@@ -163,12 +163,28 @@ $(document).ready(function(){
         if(confirm('¿Realmente deseas eliminar el producto?')) {
             const element = $(this)[0].activeElement.parentElement.parentElement;
             const id = $(element).attr('productId');
+            
             $.post('./backend/product-delete.php', {id}, (response) => {
-                $('#product-result').hide();
+                // Convertir la respuesta de la eliminación a un objeto
+                let respuesta = JSON.parse(response);
+    
+                // Crear la plantilla para la barra de estado
+                let template_bar = '';
+                template_bar += `
+                    <li style="list-style: none;">status: ${respuesta.status}</li>
+                    <li style="list-style: none;">message: ${respuesta.message}</li>
+                `;
+    
+                // Mostrar la barra de estado
+                $('#product-result').show();
+                $('#container').html(template_bar);
+                
+                // Refrescar la lista de productos
                 listarProductos();
             });
         }
     });
+    
 
     $(document).on('click', '.product-item', (e) => {
         const element = $(this)[0].activeElement.parentElement.parentElement;
