@@ -1,0 +1,38 @@
+<catalogoVod>
+    <cuenta correo="panchitoDisniplus@gmail.com">
+        <perfiles>
+            <perfil usuario="Panchito" idioma="Español"/>
+            <perfil usuario="Hermana Panchito" idioma="Japonés"/>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero nombre="Terror">
+                <titulo nombreTitulo="Resplandor" duracion="2:26:00"/>
+                <titulo nombreTitulo="El conjuro" duracion="01:52:00"/>
+                <titulo nombreTitulo="Siniestro" duracion="01:50:00"/>
+                <titulo nombreTitulo="Eso" duracion="02:15:00"/>
+            </genero>
+            <genero nombre="Accion">
+                <titulo nombreTitulo="Golden Eye" duracion="02:10:00"/>
+                <titulo nombreTitulo="Gladiador" duracion="02:35:00"/>
+                <titulo nombreTitulo="Mad Max" duracion="02:00:00"/>
+                <titulo nombreTitulo="Kill Bill" duracion="01:51:00"/>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero nombre="Aventura">
+                <titulo nombreTitulo="Arcane" duracion="00:40:00"/>
+                <titulo nombreTitulo="El Mangolorian" duracion="00:30:00"/>
+                <titulo nombreTitulo="The Last Of Us" duracion="00:50:00"/>
+                <titulo nombreTitulo="Perdidos" duracion="00:40:00"/>
+            </genero>
+            <genero nombre="Animacion">
+                <titulo nombreTitulo="Ranma 1/2" duracion="00:25:00"/>
+                <titulo nombreTitulo="Avatar: The Last Airbender" duracion="00:23:00"/>
+                <titulo nombreTitulo="Sword Art Online" duracion="00:25:00"/>
+                <titulo nombreTitulo="Los diarios de la boticaria" duracion="00:24:00"/>
+            </genero>
+        </programas>
+    </contenido>
+</catalogoVod>
