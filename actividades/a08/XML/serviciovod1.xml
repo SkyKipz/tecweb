@@ -1,0 +1,97 @@
+<catalogoVod>
+    <cuenta>
+        <correo>panchitoDisniplus@gmail.com</correo>
+        <perfiles>
+            <perfil>
+                <usuario>Panchito</usuario>
+                <idioma>Español</idioma>
+            </perfil>
+            <perfil>
+                <usuario>Hermana Panchito</usuario>
+                <idioma>Japonés</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre>Terror</nombre>
+                <titulo>
+                    <nombreTitulo>Resplandor</nombreTitulo>
+                    <duracion>2:26:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>El conjuro</nombreTitulo>
+                    <duracion>01:52:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>Siniestro</nombreTitulo>
+                    <duracion>01:50:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>Eso</nombreTitulo>
+                    <duracion>02:15:00</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Accion</nombre>
+                <titulo>
+                    <nombreTitulo>Golden Eye</nombreTitulo>
+                    <duracion>02:10:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>Gladiador</nombreTitulo>
+                    <duracion>02:35:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>Mad Max</nombreTitulo>
+                    <duracion>02:00:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>Kill Bill</nombreTitulo>
+                    <duracion>01:51:00</duracion>
+                </titulo>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero>
+                <nombre>Aventura</nombre>
+                <titulo>
+                    <nombreTitulo>Arcane</nombreTitulo>
+                    <duracion>00:40:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>El Mangolorian</nombreTitulo>
+                    <duracion>00:30:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>The Last Of Us</nombreTitulo>
+                    <duracion>00:50:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>Perdidos</nombreTitulo>
+                    <duracion>00:40:00</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Animacion</nombre>
+                <titulo>
+                    <nombreTitulo>Ranma 1/2</nombreTitulo>
+                    <duracion>00:25:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>Avatar: The Last Airbender</nombreTitulo>
+                    <duracion>00:23:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>Sword Art Online</nombreTitulo>
+                    <duracion>00:25:00</duracion>
+                </titulo>
+                <titulo>
+                    <nombreTitulo>Los diarios de la boticaria</nombreTitulo>
+                    <duracion>00:24:00</duracion>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+</catalogoVod>
