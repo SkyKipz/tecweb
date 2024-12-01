@@ -164,7 +164,7 @@ $(document).ready(function(){
             const element = $(this)[0].activeElement.parentElement.parentElement;
             const id = $(element).attr('productId');
             
-            $.post('./backend/product-delete.php', {id}, (response) => {
+            $.post('./backend/product-delete', {id}, (response) => {
                 // Convertir la respuesta de la eliminación a un objeto
                 let respuesta = JSON.parse(response);
     

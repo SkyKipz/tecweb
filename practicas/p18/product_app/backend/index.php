@@ -10,23 +10,47 @@ $app = new Slim\App();
 
 // listar
 $app->get('/product-list', function ($request, $response, $args) {
+    $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
     $productos = new Read('marketzone');
     $productos->list();
-    echo $productos->getData();
+    $response->getBody()->write(json_encode($productos->getData()));
+    return $response;
 });
 
 // add
-$app->post('/product-add', function ($request, $response, $args) {
+$app->post('/product-add', function($request, $response, $args){
+    $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
     $productos = new Create('marketzone');
-    $productos->add( json_decode( json_encode($_POST) ) );
-    echo $productos->getData();
+    $reqPost = $request->getParsedBody();
+    if(isset($reqPost['nombre'])) {
+        $productos->add($reqPost);
+    }
+    $response->getBody()->write(json_encode($productos->getData()));
+    return $response;
 });
 
 // edit
 $app->post('/product-edit', function ($request, $response, $args) {
+    $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
     $productos = new Update('marketzone');
-    $productos->edit( json_decode( json_encode($_POST) ) );
-    echo $productos->getData();
+    $reqPost = $request->getParsedBody();
+    if(isset($reqPost['id'])) {
+        $productos->edit($reqPost);
+    }
+    $response->getBody()->write(json_encode($productos->getData()));
+    return $response;
+});
+
+// borrar
+$app->post('/product-delete', function($request, $response, $args){
+    $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
+    $productos = new Delete('marketzone');
+    $reqPost = $request->getParsedBody();
+    if(isset($reqPost['id'])) {
+        $productos->delete($reqPost['id']);
+    }
+    $response->getBody()->write(json_encode($productos->getData()));
+    return $response;
 });
 
 $app->run();
