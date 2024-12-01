@@ -15,13 +15,19 @@ $app->get('/product-list', function ($request, $response, $args) {
     echo $productos->getData();
 });
 
-// listar
-$app->post('/product-add[/{id}]', function ($request, $response, $args) {
+// add
+$app->post('/product-add', function ($request, $response, $args) {
     $productos = new Create('marketzone');
     $productos->add( json_decode( json_encode($_POST) ) );
     echo $productos->getData();
 });
 
+// edit
+$app->post('/product-edit', function ($request, $response, $args) {
+    $productos = new Update('marketzone');
+    $productos->edit( json_decode( json_encode($_POST) ) );
+    echo $productos->getData();
+});
 
 $app->run();
 ?>

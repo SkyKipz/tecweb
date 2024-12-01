@@ -133,7 +133,7 @@ $(document).ready(function(){
          * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
          **/
 
-        const url = edit === false ? './backend/product-add' : './backend/product-edit.php';
+        const url = edit === false ? './backend/product-add' : './backend/product-edit';
         
         $.post(url, postData, (response) => {
             console.log(response);
