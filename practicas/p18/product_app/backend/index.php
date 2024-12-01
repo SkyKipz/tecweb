@@ -66,6 +66,16 @@ $app->post('/product-single', function($request, $response, $args){
 });
 
 //search
+$app->get('/product-search', function($request, $response, $args){
+    $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8'); //Para los acentos
+    $productos = new Read('marketzone');
+    $queryParams = $request->getQueryParams();
+    if(isset($queryParams['search'])) {
+        $productos->search($queryParams['search']);
+    }
+    $response->getBody()->write(json_encode($productos->getData()));
+    return $response;
+});
 
 $app->run();
 ?>
