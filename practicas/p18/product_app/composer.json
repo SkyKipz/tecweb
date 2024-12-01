@@ -1,0 +1,10 @@
+{
+    "autoload": {
+      "psr-4": {
+        "TECWEB\\MYAPI\\": "backend/myapi/"
+      }
+    },
+    "require": {
+        "slim/slim": "3.0"
+    }
+}
