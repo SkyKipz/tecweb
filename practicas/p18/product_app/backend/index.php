@@ -56,14 +56,16 @@ $app->post('/product-delete', function($request, $response, $args){
 //single
 $app->post('/product-single', function($request, $response, $args){
     $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
-    $products = new Read("root", "cursodbAPO11?", "marketzone");
+    $productos = new Read('marketzone');
     $reqPost = $request->getParsedBody();
     if(isset($reqPost['id'])) {
-        $products->single($reqPost['id']);
+        $productos->single($reqPost['id']);
     }
-    $response->getBody()->write(json_encode($products->getData()));
+    $response->getBody()->write(json_encode($productos->getData()));
     return $response;
 });
+
+//search
 
 $app->run();
 ?>
